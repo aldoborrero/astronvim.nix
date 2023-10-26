@@ -60,22 +60,23 @@ return {
 
     -- enable servers that you already have installed without mason
     servers = {
-      "clangd",
       "bashls",
-      "gopls",
-      "taplo",
-      "marksman",
-      "pyright",
-      "nil_ls",
-      "terraformls",
-      "lua_ls",
-      "vale",
-      "rust_analyzer",
-      "gopls",
-      "yamlls",
+      "clangd",
       "denols",
+      "gopls",
+      "gopls",
+      "lua_ls",
+      "marksman",
+      "nil_ls",
+      "pyright",
+      "rust_analyzer",
+      "taplo",
+      "terraformls",
+      "vale",
+      "yamlls",
     },
   },
+
   --
   -- Configure require("lazy").setup() options
   lazy = {
