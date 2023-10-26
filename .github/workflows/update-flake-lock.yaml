@@ -1,0 +1,23 @@
+name: "Update flake inputs"
+on:
+  repository_dispatch:
+  workflow_dispatch:
+  schedule:
+    - cron: '0 0 * * 0' # runs weekly on Sunday at 00:00
+permissions:
+  pull-requests: write
+  contents: write
+jobs:
+  createPullRequest:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - name: Install Nix
+        uses: cachix/install-nix-action@v23
+        with:
+          github_access_token: ${{ secrets.GITHUB_TOKEN }}
+      - name: Update flake.lock
+        uses: DeterminateSystems/update-flake-lock@main
+        with:
+          pr-labels: |
+            merge-queue
