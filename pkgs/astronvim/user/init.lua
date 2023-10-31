@@ -18,7 +18,7 @@ return {
   },
 
   -- Set colorscheme to use
-  colorscheme = "astrodark",
+  colorscheme = "catppuccin",
 
   -- Diagnostics configuration (for vim.diagnostics.config({...})) when diagnostics are on
   diagnostics = {
@@ -63,7 +63,6 @@ return {
       "bashls",
       "clangd",
       "denols",
-      "gopls",
       "gopls",
       "lua_ls",
       "marksman",
