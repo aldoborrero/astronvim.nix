@@ -20,6 +20,7 @@ return {
       return opts
     end,
   },
+  -- customize gitsigns options
   {
     "gitsigns.nvim",
     opts = function(_, opts)
@@ -27,6 +28,7 @@ return {
       return opts
     end,
   },
+  -- customize neo-tree options
   {
     "nvim-neo-tree/neo-tree.nvim",
     opts = {
