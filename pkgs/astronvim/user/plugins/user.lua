@@ -1,7 +1,9 @@
 return {
   {
     "lewis6991/spaceless.nvim",
-    init = function() require("spaceless").setup() end,
+    init = function()
+      require("spaceless").setup()
+    end,
   },
   {
     "ziontee113/icon-picker.nvim",
