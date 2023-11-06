@@ -1,12 +1,25 @@
-pull_request_rules:
-  - name: Automerge PRs
+queue_rules:
+  - name: default
     conditions:
-      - "check-success=Update nix flake inputs"
-      - "label=merge-queue"
-      - "base=main"
+      - "check-success=Nix Flake Inputs Update"
+      - "check-success=Nix Flake Check"
     actions:
       merge:
         method: merge
+
+defaults:
+  actions:
+    queue:
+      allow_merging_configuration_change: true
+
+pull_request_rules:
+  - name: Automerge PRs using the merge queue
+    conditions:
+      - "label=merge-queue"
+      - "base=main"
+    actions:
+      queue:
+        name: default
 
   - name: Delete head branch after merge
     conditions:
