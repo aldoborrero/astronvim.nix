@@ -1,4 +1,4 @@
-name: "Update nix flake inputs"
+name: "Nix Flake Inputs Update"
 on:
   repository_dispatch:
   workflow_dispatch:
