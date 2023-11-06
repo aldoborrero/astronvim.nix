@@ -1,9 +1,9 @@
-name: "Update flake inputs"
+name: "Update nix flake inputs"
 on:
   repository_dispatch:
   workflow_dispatch:
   schedule:
-    - cron: '0 0 * * 0' # runs weekly on Sunday at 00:00
+    - cron: '12 0 * * 1' # runs weekly on Monday at 00:12
 permissions:
   pull-requests: write
   contents: write
