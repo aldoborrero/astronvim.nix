@@ -1,0 +1,17 @@
+queue_rules:
+  - name: default
+    merge_conditions:
+      - check-success=Nix Flake Check
+
+defaults:
+  actions:
+    queue:
+      allow_merging_configuration_change: true
+
+pull_request_rules:
+  - name: Automatic merge using the merge queue
+    conditions:
+      - base=main
+      - label~=merge-queue|dependencies
+    actions:
+      queue:
