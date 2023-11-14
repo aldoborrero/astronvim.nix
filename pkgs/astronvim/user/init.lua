@@ -45,10 +45,9 @@ return {
         enabled = true,     -- enable or disable format on save globally
         allow_filetypes = { -- enable format on save for specified filetypes only
           "go",
+          "lua",
           "nix",
           "rust",
-        },
-        ignore_filetypes = { -- disable format on save for specified filetypes
         },
       },
       disabled = { -- disable formatting capabilities for the listed language servers
@@ -56,7 +55,7 @@ return {
       timeout_ms = 1000, -- default format timeout
     },
 
-    -- enable servers that you already have installed without mason
+    -- we have these servers coming from nix
     servers = {
       "bashls",
       "clangd",

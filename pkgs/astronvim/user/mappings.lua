@@ -13,12 +13,24 @@ return {
     -- close buffer with picker
     ["<leader>bx"] = {
       function()
-        require("astronvim.utils.status").heirline.buffer_picker(function(bufnr) require("astronvim.utils.buffer").close(bufnr) end)
+        require("astronvim.utils.status").heirline.buffer_picker(
+          function(bufnr) require("astronvim.utils.buffer").close(bufnr) end
+        )
       end,
       desc = "Pick buffer to close",
     },
 
-    ["<leader><leader>"] = { function() require("telescope.builtin").find_files() end, desc = "Find files" },
+    -- open file picker
+    ["<leader><leader>"] = {
+      function() require("telescope.builtin").find_files() end,
+      desc = "Find files",
+    },
+
+    -- open emoji icons
+    ["<leader>i"] = {
+      "<cmd>IconPickerInsert<cr>",
+      desc = "Open emoji icon picker",
+    },
   },
   -- terminal mode
   t = {
@@ -28,5 +40,5 @@ return {
   -- ex commands
   c = {
     ["w!!"] = { "w !sudo tee > /dev/null %", desc = "Write as sudo" },
-  }
+  },
 }
