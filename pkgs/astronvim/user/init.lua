@@ -36,19 +36,10 @@ return {
 
     -- customize lsp formatting options
     formatting = {
-      -- control auto formatting on save
       format_on_save = {
-        enabled = true,     -- enable or disable format on save globally
-        allow_filetypes = { -- enable format on save for specified filetypes only
-          "go",
-          "lua",
-          "nix",
-          "rust",
-        },
+        enabled = true,    -- enable or disable format on save globally
+        timeout_ms = 1000, -- default format timeout
       },
-      disabled = { -- disable formatting capabilities for the listed language servers
-      },
-      timeout_ms = 1000, -- default format timeout
     },
 
     -- we have these servers coming from nix
