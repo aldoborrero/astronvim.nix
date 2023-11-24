@@ -40,7 +40,6 @@
     sumneko-lua-language-server
     taplo-lsp
     terraform-ls
-    vale
     yaml-language-server
   ];
 in

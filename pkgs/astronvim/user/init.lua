@@ -32,10 +32,6 @@ return {
       clangd = {
         cmd = { "clangd", "--offset-encoding=utf-16" },
       },
-      vale = {
-        cmd = { "vale", "--lsp" },
-        filetypes = { "markdown", "text" },
-      },
     },
 
     -- customize lsp formatting options
@@ -68,7 +64,6 @@ return {
       "rust_analyzer",
       "taplo",
       "terraformls",
-      "vale",
       "yamlls",
     },
   },
