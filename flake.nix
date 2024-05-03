@@ -14,12 +14,12 @@
 
   inputs = {
     # nix packages
-    nixpkgs.url = "github:nixos/nixpkgs/nixos-23.05";
+    nixpkgs.url = "github:nixos/nixpkgs/nixos-23.11";
     nixpkgs-unstable.url = "github:nixos/nixpkgs/nixos-unstable";
 
     # nvim
     astro-nvim = {
-      url = "github:AstroNvim/AstroNvim";
+      url = "github:AstroNvim/AstroNvim/v3.45.3";
       flake = false;
     };
 
@@ -28,7 +28,6 @@
       url = "github:hercules-ci/flake-parts";
       inputs.nixpkgs-lib.follows = "nixpkgs";
     };
-    flake-root.url = "github:srid/flake-root";
 
     # utils
     treefmt-nix = {
@@ -76,7 +75,6 @@
       imports = [
         inputs.devshell.flakeModule
         inputs.flake-parts.flakeModules.easyOverlay
-        inputs.flake-root.flakeModule
         inputs.treefmt-nix.flakeModule
         localInputs.pkgs.default
       ];
@@ -139,9 +137,9 @@
 
         # formatter
         treefmt.config = {
-          inherit (config.flake-root) projectRootFile;
           flakeFormatter = true;
           flakeCheck = true;
+          projectRootFile = "flake.nix";
           programs = {
             alejandra.enable = true;
             deadnix.enable = true;
