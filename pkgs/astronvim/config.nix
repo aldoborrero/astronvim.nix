@@ -21,15 +21,16 @@
     gotests
     gotools
     govulncheck
+    helm-ls
     iferr
     impl
     isort
     marksman
     nil
-    nodejs
     nodePackages.bash-language-server
     nodePackages.prettier
     nodePackages.pyright
+    nodejs
     reftools
     richgo
     ruff
