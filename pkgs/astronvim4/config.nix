@@ -1,9 +1,8 @@
 {
-  inputs,
   lib,
   pkgs,
-  vimPlugins,
   stdenv,
+  vimPlugins,
 }: let
   lspPackages = with pkgs; [
     alejandra
@@ -45,20 +44,18 @@
   ];
 in
   stdenv.mkDerivation {
-    name = "astro-nvim-config";
+    name = "astronvim4-config";
 
     phases = "installPhase";
 
     installPhase = ''
+      # create out dir
       mkdir -p $out/parser
-      ln -s ${inputs.astro-nvim}/* $out/
 
-      rm $out/lua
-      mkdir -p $out/lua
+      # copy the astronvim config
+      cp -rs ${./config}/. $out
 
-      ln -s ${inputs.astro-nvim}/lua/* $out/lua
-      ln -s ${./user} $out/lua/user
-
+      # copy all grammars
       ${lib.concatMapStringsSep "\n" (grammar: ''
           ln -s $(readlink -f ${grammar}/parser/*.so) $out/parser/${lib.last (builtins.split "-" grammar.name)}.so
         '')

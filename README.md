@@ -4,7 +4,7 @@ My AstroNvim configuration with Nix!
 
 ## Why?
 
-Having my configuration ready as a `flake` allows me to run `nvim` wherever I want!
+Having my configuration ready as a `flake` allows me to run `nvim` already configured to my taste wherever I want!
 
 **Note**: This is a personal configuration tailored to my specific needs. Feel free to fork this repository and customize on your own!
 
@@ -18,7 +18,7 @@ You can add the following registry shortcut to type less characters:
 $ nix registry add nvim-aldo github:aldoborrero/astronvim.nix
 ```
 
-## Running my Astro NeoVim
+## Running my AstroNvim
 
 Just issue the following command:
 

@@ -14,12 +14,12 @@
 
   inputs = {
     # nix packages
-    nixpkgs.url = "github:nixos/nixpkgs/nixos-23.11";
+    nixpkgs.url = "github:nixos/nixpkgs/nixos-24.05";
     nixpkgs-unstable.url = "github:nixos/nixpkgs/nixos-unstable";
 
     # nvim
-    astro-nvim = {
-      url = "github:AstroNvim/AstroNvim/v3.45.3";
+    astronvim3 = {
+      url = "github:AstroNvim/AstroNvim/v3.34.3";
       flake = false;
     };
 
@@ -38,14 +38,6 @@
       url = "github:numtide/devshell";
       inputs.nixpkgs.follows = "nixpkgs";
     };
-    devour-flake = {
-      url = "github:srid/devour-flake";
-      flake = false;
-    };
-    haumea = {
-      url = "github:nix-community/haumea/v0.2.2";
-      inputs.nixpkgs.follows = "nixpkgs";
-    };
     lib-extras = {
       url = "github:aldoborrero/lib-extras";
       inputs.nixpkgs.follows = "nixpkgs";
@@ -54,29 +46,24 @@
 
   outputs = inputs @ {
     flake-parts,
-    haumea,
     lib-extras,
     nixpkgs,
     nixpkgs-unstable,
     ...
   }: let
     lib = nixpkgs-unstable.lib.extend (l: _: lib-extras.lib l);
-    localInputs = haumea.lib.load {
-      src = ./.;
-      loader = haumea.lib.loaders.path;
-    };
   in
     flake-parts.lib.mkFlake
     {
       inherit inputs;
-      specialArgs = {inherit lib localInputs;};
+      specialArgs = {inherit lib;};
     }
     {
       imports = [
         inputs.devshell.flakeModule
         inputs.flake-parts.flakeModules.easyOverlay
         inputs.treefmt-nix.flakeModule
-        localInputs.pkgs.default
+        ./pkgs
       ];
 
       debug = false;
@@ -95,11 +82,6 @@
           pkgs = lib.nix.mkNixpkgs {
             inherit system;
             inherit (inputs) nixpkgs;
-            overlays = [
-              (final: _prev: {
-                devour-flake = final.callPackage inputs.devour-flake {};
-              })
-            ];
           };
           pkgsUnstable = lib.nix.mkNixpkgs {
             inherit system;
@@ -154,24 +136,6 @@
               "*.md"
               "*.html"
             ];
-          };
-        };
-
-        # checks
-        checks = {
-          nix-build-all = pkgs.writeShellApplication {
-            name = "nix-build-all";
-            runtimeInputs = with pkgs; [
-              devour-flake
-              nix
-            ];
-            text = ''
-              # Make sure that flake.lock is sync
-              nix flake lock --no-update-lock-file
-
-              # Do a full nix build (all outputs)
-              devour-flake . "$@"
-            '';
           };
         };
       };
