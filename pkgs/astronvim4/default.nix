@@ -1,10 +1,10 @@
 {
   writeShellScriptBin,
-  astronvim-config,
+  astronvim4-config,
   buildEnv,
   vimPlugins,
   neovim,
-  nvim-appname ? "nvim-aldo",
+  nvim-appname ? "astronvim4",
 }:
 writeShellScriptBin "nvim" ''
   set -efu
@@ -12,7 +12,7 @@ writeShellScriptBin "nvim" ''
   unset VIMINIT
   export PATH=${buildEnv {
     name = "lsp-servers";
-    paths = astronvim-config.lspPackages;
+    paths = astronvim4-config.lspPackages;
   }}/bin:$PATH
   export NVIM_APPNAME=${nvim-appname}
 
@@ -25,7 +25,7 @@ writeShellScriptBin "nvim" ''
   NVIM_DATA="$XDG_DATA_HOME/$NVIM_APPNAME"
 
   # Link custom config and install plugins
-  ln -sfT ${astronvim-config} "$NVIM_CONFIG"
+  ln -sfT ${astronvim4-config} "$NVIM_CONFIG"
   ${neovim}/bin/nvim --headless -c 'quitall'
 
   if [[ -d $NVIM_DATA/lazy/telescope-fzf-native.nvim ]]; then
