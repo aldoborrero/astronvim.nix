@@ -6,7 +6,7 @@
   neovim,
   nvim-appname ? "astronvim4",
 }:
-writeShellScriptBin "nvim" ''
+writeShellScriptBin "astronvim4" ''
   set -efu
 
   unset VIMINIT

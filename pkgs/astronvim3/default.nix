@@ -6,7 +6,7 @@
   neovim,
   nvim-appname ? "nvim-aldo",
 }:
-writeShellScriptBin "nvim" ''
+writeShellScriptBin "astronvim3" ''
   set -efu
 
   unset VIMINIT
