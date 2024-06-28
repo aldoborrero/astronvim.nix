@@ -1,5 +1,5 @@
+---@type LazySpec
 return {
-  -- customize neo-tree options
   {
     "nvim-neo-tree/neo-tree.nvim",
     opts = {

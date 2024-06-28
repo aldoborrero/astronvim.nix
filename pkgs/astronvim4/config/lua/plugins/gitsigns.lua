@@ -1,5 +1,5 @@
+---@type LazySpec
 return {
-  -- customize gitsigns options
   {
     "gitsigns.nvim",
     opts = function(_, opts)
