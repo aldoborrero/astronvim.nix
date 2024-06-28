@@ -79,13 +79,12 @@ return {
         },
 
         -- open aichat
-        ["<leader>tl"] = {
+        ["<F8>"] = {
           function()
             utils.toggle_term_cmd("aichat")
           end,
-          desc = "Open LLM REPL",
+          desc = "Open aichat",
         },
-
         -- tables with just a `desc` key will be registered with which-key if it's installed
         -- this is useful for naming menus
         -- ["<Leader>b"] = { desc = "Buffers" },
