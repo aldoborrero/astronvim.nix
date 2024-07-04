@@ -42,6 +42,7 @@ return {
       "bashls",
       "clangd",
       "denols",
+      "dockerls",
       "gopls",
       "helm_ls",
       "lua_ls",

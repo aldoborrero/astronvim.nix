@@ -5,6 +5,9 @@
   vimPlugins,
 }: let
   lspToolingPkgs = with pkgs; [
+    # Docker
+    dockerfile-language-server-nodejs
+
     # C
     clang-tools
 
