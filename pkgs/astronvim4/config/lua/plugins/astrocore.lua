@@ -3,7 +3,7 @@
 -- NOTE: We highly recommend setting up the Lua Language Server (`:LspInstall lua_ls`)
 --       as this provides autocomplete and documentation while editing
 
-local utils = require("astrocore")
+local astro = require("astrocore")
 
 ---@type LazySpec
 return {
@@ -78,10 +78,21 @@ return {
           desc = "Find Files",
         },
 
+        ["<F6>"] = {
+          function()
+            local worktree = astro.file_worktree()
+            local flags = worktree
+                and (" --work-tree=%s --git-dir=%s"):format(worktree.toplevel, worktree.gitdir)
+                or ""
+            astro.toggle_term_cmd("lazygit " .. flags)
+          end,
+          desc = "Open LazyGit",
+        },
+
         -- open aichat
         ["<F8>"] = {
           function()
-            utils.toggle_term_cmd("aichat")
+            astro.toggle_term_cmd("aichat")
           end,
           desc = "Open aichat",
         },
