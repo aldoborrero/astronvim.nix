@@ -12,7 +12,7 @@ writeShellScriptBin "astronvim4" ''
   unset VIMINIT
   export PATH=${buildEnv {
     name = "lsp-servers";
-    paths = astronvim4-config.lspPackages;
+    paths = astronvim4-config.lspToolingPkgs;
   }}/bin:$PATH
   export NVIM_APPNAME=${nvim-appname}
 

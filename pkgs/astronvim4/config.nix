@@ -4,12 +4,12 @@
   stdenv,
   vimPlugins,
 }: let
-  lspPackages = with pkgs; [
-    alejandra
-    black
+  lspToolingPkgs = with pkgs; [
+    # C
     clang-tools
+
+    # golang
     delve
-    deno
     ginkgo
     go
     gofumpt
@@ -20,26 +20,53 @@
     gotests
     gotools
     govulncheck
-    helm-ls
     iferr
     impl
     isort
-    marksman
-    nil
-    nodePackages.bash-language-server
-    nodePackages.prettier
-    nodePackages.pyright
-    nodejs
-    reftools
     richgo
+
+    # Helm
+    helm-ls
+
+    # Lua
+    stylua
+    lua-language-server
+
+    # Markdown
+    marksman
+
+    # Nix
+    alejandra
+    nil
+
+    # NodeJS
+    deno
+    nodePackages.prettier
+    nodejs
+
+    # Python
+    black
+    nodePackages.pyright
+    reftools
     ruff
+
+    # Rust
     rust-analyzer
+    rustfmt
+
+    # Shell
+    nodePackages.bash-language-server
     shellcheck
     shfmt
-    stylua
-    sumneko-lua-language-server
+
+    # TOML
     taplo-lsp
+
+    # Terraform
     terraform-ls
+    tflint
+
+    # YAML
     yaml-language-server
   ];
 in
@@ -62,5 +89,5 @@ in
         vimPlugins.nvim-treesitter.withAllGrammars.dependencies}
     '';
 
-    passthru.lspPackages = lspPackages;
+    passthru.lspToolingPkgs = lspToolingPkgs;
   }
