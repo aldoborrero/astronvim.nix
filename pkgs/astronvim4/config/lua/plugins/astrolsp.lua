@@ -37,18 +37,23 @@ return {
       -- end
     },
     -- enable servers that you already have installed without mason
+    -- https://github.com/williamboman/mason-lspconfig.nvim/blob/main/doc/server-mapping.md
     servers = {
       "bashls",
       "clangd",
       "denols",
       "gopls",
+      "helm_ls",
       "lua_ls",
       "marksman",
       "nil_ls",
       "pyright",
-      "rust_analyzer",
+      "ruff",
+      "rust-analyzer",
+      "rustfmt",
       "taplo",
       "terraformls",
+      "tflint",
       "yamlls",
     },
     -- customize language server configuration options passed to `lspconfig`
