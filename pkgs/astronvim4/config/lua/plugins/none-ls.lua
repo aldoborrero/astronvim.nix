@@ -14,6 +14,9 @@ return {
         args = { "-i", "2" },
       }),
 
+      -- cue
+      null_ls.builtins.formatting.cue_fmt,
+
       -- html/css/js/ts/json/yaml/xml/markdown
       null_ls.builtins.formatting.prettier,
 
@@ -27,19 +30,16 @@ return {
       null_ls.builtins.formatting.stylua,
 
       -- nix
+      null_ls.builtins.code_actions.statix,
       null_ls.builtins.formatting.alejandra,
 
       -- python
       null_ls.builtins.formatting.black,
       null_ls.builtins.formatting.isort,
-      null_ls.builtins.formatting.ruff,
-
-      -- rust
-      null_ls.builtins.formatting.rustfmt,
 
       -- terraform
       null_ls.builtins.formatting.terraform_fmt,
     }
-    return config -- return final config table
+    return config
   end,
 }
