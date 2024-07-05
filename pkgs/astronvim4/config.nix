@@ -11,6 +11,9 @@
     # C
     clang-tools
 
+    # cue
+    cue
+
     # golang
     delve
     ginkgo
@@ -41,6 +44,7 @@
     # Nix
     alejandra
     nil
+    statix
 
     # NodeJS
     deno
