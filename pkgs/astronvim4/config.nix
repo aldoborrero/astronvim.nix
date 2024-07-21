@@ -3,79 +3,84 @@
   pkgs,
   stdenv,
   vimPlugins,
+  myPkgs,
 }: let
-  lspToolingPkgs = with pkgs; [
-    # Docker
-    dockerfile-language-server-nodejs
+  lspToolingPkgs = with pkgs;
+    [
+      # Docker
+      dockerfile-language-server-nodejs
 
-    # C
-    clang-tools
+      # C
+      clang-tools
 
-    # cue
-    cue
+      # cue
+      cue
 
-    # golang
-    delve
-    ginkgo
-    go
-    gofumpt
-    golangci-lint
-    golines
-    gomodifytags
-    gopls
-    gotests
-    gotools
-    govulncheck
-    iferr
-    impl
-    isort
-    richgo
+      # golang
+      delve
+      ginkgo
+      go
+      gofumpt
+      golangci-lint
+      golines
+      gomodifytags
+      gopls
+      gotests
+      gotools
+      govulncheck
+      iferr
+      impl
+      isort
+      richgo
 
-    # Helm
-    helm-ls
+      # Helm
+      helm-ls
 
-    # Lua
-    stylua
-    lua-language-server
+      # Lua
+      stylua
+      lua-language-server
 
-    # Markdown
-    marksman
+      # Markdown
+      marksman
 
-    # Nix
-    alejandra
-    nil
-    statix
+      # Nix
+      alejandra
+      nil
+      statix
 
-    # NodeJS
-    deno
-    nodePackages.prettier
-    nodejs
+      # NodeJS
+      deno
+      nodePackages.prettier
+      nodejs
 
-    # Python
-    black
-    nodePackages.pyright
-    reftools
-    ruff
+      # Python
+      black
+      nodePackages.pyright
+      reftools
+      ruff
 
-    # Rust
-    rust-analyzer
-    rustfmt
+      # Rust
+      rust-analyzer
+      rustfmt
 
-    # Shell
-    nodePackages.bash-language-server
-    shellcheck
-    shfmt
+      # Shell
+      nodePackages.bash-language-server
+      shellcheck
+      shfmt
 
-    # TOML
-    taplo-lsp
+      # TOML
+      taplo-lsp
 
-    # Terraform
-    terraform-ls
-    tflint
+      # Terraform
+      terraform-ls
+      tflint
 
-    # YAML
-    yaml-language-server
-  ];
+      # YAML
+      yaml-language-server
+    ]
+    ++ (with myPkgs; [
+      kcl-language-server
+    ]);
 in
   stdenv.mkDerivation {
     name = "astronvim4-config";
