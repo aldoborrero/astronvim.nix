@@ -18,9 +18,7 @@ You can add the following registry shortcut to type less characters:
 $ nix registry add nvim-aldo github:aldoborrero/astronvim.nix
 ```
 
-## Running my AstroNvim
-
-Just issue the following command:
+## Running AstroNvim
 
 ```console
 $ nix run nvim-aldo#astronvim
