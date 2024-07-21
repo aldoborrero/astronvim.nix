@@ -5,6 +5,18 @@ return {
     -- config variable is the default configuration table for the setup function call
     local null_ls = require("null-ls")
 
+    -- Custom source for KCL formatting
+    local kcl_fmt = {
+      name = "kcl_fmt",
+      method = null_ls.methods.FORMATTING,
+      filetypes = { "kcl" },
+      generator = null_ls.generator({
+        command = "kcl",
+        args = { "fmt", "-" },
+        to_stdin = true,
+      }),
+    }
+
     -- Check supported formatters and linters
     -- https://github.com/nvimtools/none-ls.nvim/tree/main/lua/null-ls/builtins/formatting
     -- https://github.com/nvimtools/none-ls.nvim/tree/main/lua/null-ls/builtins/diagnostics
@@ -19,6 +31,9 @@ return {
 
       -- html/css/js/ts/json/yaml/xml/markdown
       null_ls.builtins.formatting.prettier,
+
+      -- kcl
+      kcl_fmt,
 
       -- go
       null_ls.builtins.code_actions.impl,

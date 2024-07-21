@@ -45,6 +45,7 @@ return {
       "dockerls",
       "gopls",
       "helm_ls",
+      "kclls",
       "lua_ls",
       "marksman",
       "nil_ls",
@@ -58,7 +59,13 @@ return {
     -- customize language server configuration options passed to `lspconfig`
     ---@diagnostic disable: missing-fields
     config = {
-      -- clangd = { capabilities = { offsetEncoding = "utf-8" } },
+      kclls = {
+        cmd = { "kcl-language-server" },
+        filetypes = { "k" },
+        root_dir = function(fname)
+          return require("lspconfig.util").find_git_ancestor(fname) or vim.loop.os_homedir()
+        end,
+      },
     },
     -- customize how language servers are attached
     handlers = {
