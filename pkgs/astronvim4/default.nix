@@ -47,7 +47,9 @@ writeShellScriptBin "astronvim4" ''
   # Link or copy custom config based on --no-link option
   if [ $NO_LINK -eq 1 ]; then
     rm -rf "$NVIM_CONFIG"
-    cp -R ${astronvim4-config} "$NVIM_CONFIG"
+    cp -R -L ${astronvim4-config} "$NVIM_CONFIG"
+    chown -R $(id -u):$(id -g) $NVIM_CONFIG
+    chmod -R u=rwX,go=rX "$NVIM_CONFIG"
   else
     ln -sfT ${astronvim4-config} "$NVIM_CONFIG"
   fi
