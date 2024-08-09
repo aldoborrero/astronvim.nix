@@ -41,6 +41,7 @@ return {
     servers = {
       "bashls",
       "clangd",
+      "dagger",
       "denols",
       "dockerls",
       "gopls",

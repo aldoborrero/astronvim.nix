@@ -15,6 +15,7 @@
 
       # cue
       cue
+      cuelsp
 
       # golang
       delve
