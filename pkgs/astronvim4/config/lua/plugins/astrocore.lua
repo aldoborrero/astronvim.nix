@@ -76,11 +76,12 @@ return {
           desc = "Find Files",
         },
 
+        -- open lazygit
         ["<F6>"] = {
           function()
             local worktree = astro.file_worktree()
             local flags = worktree
-                and (" --work-tree=%s --git-dir=%s"):format(worktree.toplevel, worktree.gitdir)
+                and ("--work-tree=%s --git-dir=%s"):format(worktree.toplevel, worktree.gitdir)
                 or ""
             astro.toggle_term_cmd("lazygit " .. flags)
           end,
@@ -90,7 +91,7 @@ return {
         -- open aichat
         ["<F8>"] = {
           function()
-            astro.toggle_term_cmd("aichat")
+            astro.toggle_term_cmd({ cmd = "aichat" })
           end,
           desc = "Open aichat",
         },
