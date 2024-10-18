@@ -20,12 +20,6 @@
     nixpkgs-unstable.url = "github:nixos/nixpkgs/nixpkgs-unstable";
     mynixpkgs.url = "github:aldoborrero/mynixpkgs";
 
-    # nvim
-    astronvim3 = {
-      url = "github:AstroNvim/AstroNvim/v3.34.3";
-      flake = false;
-    };
-
     # flake-parts
     flake-parts = {
       url = "github:hercules-ci/flake-parts";
@@ -45,12 +39,12 @@
       url = "github:aldoborrero/lib-extras";
       inputs.nixpkgs.follows = "nixpkgs";
     };
+    systems.url = "github:nix-systems/default";
   };
 
   outputs = inputs @ {
     flake-parts,
     lib-extras,
-    nixpkgs,
     nixpkgs-unstable,
     ...
   }: let
@@ -71,15 +65,9 @@
 
       debug = false;
 
-      systems = ["x86_64-linux"];
+      systems = import inputs.systems;
 
-      perSystem = {
-        config,
-        pkgs,
-        pkgsUnstable,
-        system,
-        ...
-      }: {
+      perSystem = {system, ...}: {
         # nixpkgs
         _module.args = {
           pkgs = lib.nix.mkNixpkgs {
@@ -134,12 +122,17 @@
             shellcheck.enable = true;
             shfmt.enable = true;
             statix.enable = true;
+            stylua.enable = true;
+            yamlfmt.enable = true;
           };
           settings.formatter = {
             deno.excludes = [
               "*.md"
               "*.html"
             ];
+            alejandra.priority = 3;
+            deadnix.priority = 1;
+            statix.priority = 2;
           };
         };
       };
