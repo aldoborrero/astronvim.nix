@@ -1,9 +1,9 @@
 ---@type LazySpec
 return {
-  "nvim-treesitter/nvim-treesitter",
-  opts = {
-    highlight = {
-      enable = true,
-    },
-  },
+	"nvim-treesitter/nvim-treesitter",
+	opts = {
+		highlight = {
+			enable = true,
+		},
+	},
 }
