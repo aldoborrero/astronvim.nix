@@ -1,23 +1,31 @@
+# yaml-language-server: $schema=https://json.schemastore.org/github-workflow.json
+
 name: "Nix Flake Inputs Update"
+
 on:
   repository_dispatch:
   workflow_dispatch:
   schedule:
     - cron: '12 0 * * 1' # runs weekly on Monday at 00:12
+
 permissions:
   pull-requests: write
   contents: write
+
 jobs:
   createPullRequest:
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v4
+
       - name: Install Nix
-        uses: cachix/install-nix-action@v23
+        uses: cachix/install-nix-action@v30
         with:
           github_access_token: ${{ secrets.GITHUB_TOKEN }}
+
       - name: Update flake.lock
-        uses: DeterminateSystems/update-flake-lock@main
+        uses: DeterminateSystems/update-flake-lock@v24
         with:
           pr-labels: |
+            auto
             merge-queue
