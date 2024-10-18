@@ -1,6 +1,6 @@
 # AstroNvim.nix
 
-My AstroNvim configuration with Nix!
+My [AstroNvim](https://astronvim.com/) configuration with Nix!
 
 ## Why?
 
@@ -15,13 +15,13 @@ Having my configuration ready as a `flake` allows me to run `nvim` already confi
 You can add the following registry shortcut to type less characters:
 
 ```console
-$ nix registry add nvim-aldo github:aldoborrero/astronvim.nix
+$ nix registry add astronvim github:aldoborrero/astronvim.nix
 ```
 
 ## Running AstroNvim
 
 ```console
-$ nix run nvim-aldo#astronvim
+$ nix run astronvim#astronvim
 ```
 
 ## Acknowledgements
