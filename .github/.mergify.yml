@@ -1,17 +1,21 @@
-queue_rules:
-  - name: default
-    merge_conditions:
-      - check-success=nix-flake-check
+# yaml-language-server: $schema=https://docs.mergify.com/mergify-configuration-schema.json
 
 defaults:
   actions:
     queue:
       allow_merging_configuration_change: true
 
+queue_rules:
+  - name: default
+    merge_method: rebase
+    merge_conditions:
+      - check-success = nix-flake-check
+      - check-success = Garnix CI / All Garnix checks
+
 pull_request_rules:
-  - name: Automatic merge using the merge queue
+  - name: Automerge
     conditions:
       - base=main
-      - label~=merge-queue|dependencies
+      - label~=auto|dependencies|merge-queue
     actions:
       queue:
