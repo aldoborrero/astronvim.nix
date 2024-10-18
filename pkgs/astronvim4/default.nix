@@ -1,13 +1,16 @@
 {
-  writeShellScriptBin,
   astronvim4-config,
   buildEnv,
-  vimPlugins,
+  lib,
   neovim,
   nvim-appname ? "astronvim4",
+  vimPlugins,
+  writeShellScriptBin,
 }:
 writeShellScriptBin "astronvim4" ''
   set -efu
+
+  # Remove VIMINIT variable
   unset VIMINIT
 
   # Parse command line arguments
@@ -41,6 +44,8 @@ writeShellScriptBin "astronvim4" ''
   XDG_CONFIG_HOME=''${XDG_CONFIG_HOME:-$HOME/.config}
   XDG_DATA_HOME=''${XDG_DATA_HOME:-$HOME/.local/share}
   mkdir -p "$XDG_CONFIG_HOME" "$XDG_DATA_HOME"
+
+  # Create nvim variables
   NVIM_CONFIG="$XDG_CONFIG_HOME/$NVIM_APPNAME"
   NVIM_DATA="$XDG_DATA_HOME/$NVIM_APPNAME"
 
@@ -54,8 +59,9 @@ writeShellScriptBin "astronvim4" ''
     ln -sfT ${astronvim4-config} "$NVIM_CONFIG"
   fi
 
+
   # Install plugins and necessary tooling
-  ${neovim}/bin/nvim --headless -c 'quitall'
+  ${lib.getExe neovim} --headless -c 'quitall'
 
   # Link telescope-fzf-native plugin
   if [[ -d $NVIM_DATA/lazy/telescope-fzf-native.nvim ]]; then
@@ -64,5 +70,5 @@ writeShellScriptBin "astronvim4" ''
   fi
 
   # Run nvim
-  exec ${neovim}/bin/nvim "''${ARGS[@]}"
+  exec ${lib.getExe neovim} "''${ARGS[@]}"
 ''
