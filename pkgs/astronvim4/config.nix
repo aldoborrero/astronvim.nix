@@ -57,7 +57,7 @@
 
       # Python
       black
-      nodePackages.pyright
+      pyright
       reftools
       ruff
 

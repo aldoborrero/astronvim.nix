@@ -16,7 +16,7 @@
 
   inputs = {
     # nix packages
-    nixpkgs.url = "github:nixos/nixpkgs/nixos-24.05";
+    nixpkgs.url = "github:nixos/nixpkgs/nixos-24.11";
     nixpkgs-unstable.url = "github:nixos/nixpkgs/nixpkgs-unstable";
     mynixpkgs.url = "github:aldoborrero/mynixpkgs";
 
@@ -68,7 +68,7 @@
       systems = import inputs.systems;
 
       perSystem = {system, ...}: {
-        # nixpkgs
+        # packages
         _module.args = {
           pkgs = lib.nix.mkNixpkgs {
             inherit system;
@@ -117,7 +117,6 @@
           programs = {
             alejandra.enable = true;
             deadnix.enable = true;
-            deno.enable = true;
             mdformat.enable = true;
             shellcheck.enable = true;
             shfmt.enable = true;
@@ -126,10 +125,6 @@
             yamlfmt.enable = true;
           };
           settings.formatter = {
-            deno.excludes = [
-              "*.md"
-              "*.html"
-            ];
             alejandra.priority = 3;
             deadnix.priority = 1;
             statix.priority = 2;
