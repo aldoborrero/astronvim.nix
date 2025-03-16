@@ -1,21 +1,17 @@
 # yaml-language-server: $schema=https://docs.mergify.com/mergify-configuration-schema.json
 
-defaults:
-  actions:
-    queue:
-      allow_merging_configuration_change: true
-
 queue_rules:
   - name: default
-    merge_method: rebase
+    queue_conditions:
+      - base=main
+      - label~=merge-queue|dependencies
     merge_conditions:
       - check-success = nix-flake-check
       - check-success = Garnix CI / All Garnix checks
+    merge_method: rebase
 
 pull_request_rules:
-  - name: Automerge
-    conditions:
-      - base=main
-      - label~=auto|dependencies|merge-queue
+  - name: merge using the merge queue
+    conditions: []
     actions:
       queue:
